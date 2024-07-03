@@ -1,11 +1,13 @@
 {
   "RootLayout": {
     "home_link": "Home",
-    "about_link": "About",
+    "about_link": "CHAT AI",
     "guestbook_link": "Guestbook",
-    "portfolio_link": "Portfolio",
     "sign_in_link": "Sign in",
-    "sign_up_link": "Sign up"
+    "sign_up_link": "Sign up",
+    "theme_light": "Light",
+    "theme_dark": "Dark",
+    "theme_system": "System"
   },
   "BaseTemplate": {
     "description": "An app demo project based on the Next-js-Boilerplate template",

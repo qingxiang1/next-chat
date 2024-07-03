@@ -2,7 +2,16 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import LocaleSwitcher from '@/components/common/LocaleSwitcher';
+import ThemeSwitcher from '@/components/common/ThemeSwitcher'
 import { BaseTemplate } from '@/templates/BaseTemplate';
+
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
 
 export default function Layout(props: { children: React.ReactNode }) {
   const t = useTranslations('RootLayout');
@@ -11,63 +20,48 @@ export default function Layout(props: { children: React.ReactNode }) {
     <BaseTemplate
       leftNav={
         <>
-          <li>
-            <Link
-              href="/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('home_link')}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/about/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('about_link')}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/guestbook/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('guestbook_link')}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/portfolio/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('portfolio_link')}
-            </Link>
-          </li>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>  
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {t('home_link')}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/dashboard/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {t('about_link')}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </>
       }
       rightNav={
         <>
-          <li>
-            <Link
-              href="/sign-in/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('sign_in_link')}
-            </Link>
-          </li>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>  
+                <ThemeSwitcher />
+              </NavigationMenuItem>
 
-          <li>
-            <Link
-              href="/sign-up/"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('sign_up_link')}
-            </Link>
-          </li>
+              <NavigationMenuItem>  
+                <LocaleSwitcher />
+              </NavigationMenuItem>
 
-          <li>
-            <LocaleSwitcher />
-          </li>
+              <NavigationMenuItem>  
+                <Link href="/sign-in/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {t('sign_in_link')}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </>
       }
     >

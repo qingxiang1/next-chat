@@ -1,31 +1,22 @@
 {
   "RootLayout": {
     "home_link": "首页",
-    "about_link": "关于",
+    "about_link": "CHAT AI",
     "guestbook_link": "留言簿",
-    "portfolio_link": "文件夹",
     "sign_in_link": "登录",
-    "sign_up_link": "注册"
+    "sign_up_link": "注册",
+    "theme_light": "亮模式",
+    "theme_dark": "暗模式",
+    "theme_system": "跟随系统"
   },
   "BaseTemplate": {
-    "description": "基于 Next-js-Boilerplate 模板实现的 app 演示项目",
+    "description": "",
     "made_with": "采用"
   },
   "Index": {
-    "meta_title": "Next.js 样板演示",
-    "meta_description": "样板演示"
-  },
-  "Guestbook": {
-    "meta_title": "",
-    "meta_description": "Un exemple de fonctionnement CRUD",
-    "database_powered_by": "Base de données propulsée par",
-    "loading_guestbook": "Chargement du livre d'or...",
-    "error_reporting_powered_by": "Rapport d'erreur propulsé par"
-  },
-  "GuestbookForm": {
-    "username": "Nom d'utilisateur",
-    "body": "Message",
-    "save": "Sauvegarder"
+    "meta_title": "QCHAT AI",
+    "meta_description": "基于开源大模型实现的 AI 聊天机器人，可以检索博客内容，回答相关问题",
+    "chat_bots": "AI Chat Bot"
   },
   "About": {
     "meta_title": "A propos",

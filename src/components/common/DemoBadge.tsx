@@ -1,7 +1,7 @@
 const DemoBadge: React.FC = () => (
   <div className="fixed bottom-0 right-20 z-10">
     <a
-      href="https://github.com/ixartz/Next-js-Boilerplate"
+      href="https://github.com/qingxiang1"
       target="_blank"
       rel="noopener noreferrer"
     >
