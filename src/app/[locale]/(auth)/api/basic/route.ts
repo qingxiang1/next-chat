@@ -1,8 +1,12 @@
+/**
+ * 路由处理程序
+ */
 import { NextResponse, type NextRequest } from 'next/server';
 import { headers } from 'next/headers'
+import { auth } from "@clerk/nextjs/server";
 
 import { db } from '@/libs/DB';
-// import { logger } from '@/libs/Logger';
+import { logger } from '@/libs/Logger';
 import {
   AddUserValidation,
   EditUserValidation,
@@ -10,6 +14,11 @@ import {
 } from '@/validations/UserValidation';
 
 export const POST = async (request: NextRequest) => {
+
+  // const userAuth = await currentUser();
+  const userAuth = auth();
+
+  logger.info('user auth >>>>>> :', userAuth);
 
   const json = await request.json();
   const parse = AddUserValidation.safeParse(json);

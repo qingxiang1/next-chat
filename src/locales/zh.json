@@ -50,6 +50,7 @@
   "Dashboard": {
     "meta_title": "工作台",
     "hello_message": "你好 {email}!"
+    
   },
   "UserProfile": {
     "meta_title": "基本信息"
@@ -57,6 +58,7 @@
   "DashboardLayout": {
     "dashboard_link": "工作台",
     "user_profile_link": "账户设置",
-    "sign_out": "退出登录"
+    "sign_out": "退出登录",
+    "about_link": "CHAT AI"
   }
 }

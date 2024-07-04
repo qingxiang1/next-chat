@@ -1,6 +1,7 @@
 import '@/styles/global.css';
 
 import type { Metadata } from 'next';
+// import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
@@ -46,9 +47,6 @@ export default function RootLayout(props: {
       <body suppressHydrationWarning={true}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
         >
           <NextIntlClientProvider
             locale={props.params.locale}

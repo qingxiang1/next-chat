@@ -5,6 +5,7 @@ const localePrefix: LocalePrefix = 'as-needed';
 // FIXME: Update this configuration file based on your project information
 export const AppConfig = {
   name: '游戏人生',
+  website: 'qxmall.store',
   locales: ['zh', 'en'],
   defaultLocale: 'zh',
   localePrefix,

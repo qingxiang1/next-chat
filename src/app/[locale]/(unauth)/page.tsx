@@ -1,31 +1,28 @@
-// import { getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 
-import { AddUserForm } from '@/components/common/AddUserForm';
+export async function generateMetadata(props: { params: { locale: string } }) {
+  const t = await getTranslations({
+    locale: props.params.locale,
+    namespace: 'Index',
+  });
 
-// export async function generateMetadata(props: { params: { locale: string } }) {
-//   const t = await getTranslations({
-//     locale: props.params.locale,
-//     namespace: 'Index',
-//   });
-
-//   return {
-//     title: t('meta_title'),
-//     description: t('meta_description'),
-//   };
-// }
+  return {
+    title: t('meta_title'),
+    description: t('meta_description'),
+  };
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function Index(props: { params: { locale: string; }; }) {
 
-  // const t = await getTranslations({
-  //   locale: props.params.locale,
-  //   namespace: 'Index',
-  // });
+  const t = await getTranslations({
+    locale: props.params.locale,
+    namespace: 'Index',
+  });
 
   return (
     <>
-      {/* {t('chat_bots')} */}
-      <AddUserForm />
+      {t('chat_bots')}
     </>
   );
 }

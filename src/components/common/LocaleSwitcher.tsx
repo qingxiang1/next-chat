@@ -43,7 +43,7 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className='w-8 h-8'>
+        <Button variant="ghost" size="icon" className='w-8 h-8 mr-2'>
           <Languages className='size-5' />
           <span className="sr-only">Toggle locale</span>
         </Button>

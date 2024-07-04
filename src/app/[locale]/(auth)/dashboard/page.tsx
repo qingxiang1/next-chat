@@ -1,22 +1,20 @@
-import { getTranslations } from 'next-intl/server';
+'use client'
 
-import { Hello } from '@/components/common/Hello';
+// import dynamic from 'next/dynamic';
+// import { getTranslations } from 'next-intl/server';
 
-export async function generateMetadata(props: { params: { locale: string } }) {
-  const t = await getTranslations({
-    locale: props.params.locale,
-    namespace: 'Dashboard',
-  });
+// import { InitSystem } from '@/components/common/InitSystem';
 
-  return {
-    title: t('meta_title'),
-  };
-}
+const Dashboard = () => {
 
-const Dashboard = () => (
-  <div className="[&_p]:my-6">
-    <Hello />
-  </div>
-);
+  // const NoSSRComp = dynamic(() => import('@/components/common/ThemeProvider'), {ssr: false});
+
+  return (
+    <div className="[&_p]:my-6">
+      {/* <InitSystem /> */}
+      hahah
+    </div>
+  );
+};
 
 export default Dashboard;
