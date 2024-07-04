@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import LocaleSwitcher from '@/components/common/LocaleSwitcher';
-import ThemeSwitcher from '@/components/common/ThemeSwitcher'
+import LocaleSwitcher from '@/components/layouts/LocaleSwitcher';
+import ThemeSwitcher from '@/components/layouts/ThemeSwitcher'
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
 import {

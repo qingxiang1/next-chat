@@ -7,8 +7,8 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 
-import LocaleSwitcher from '@/components/common/LocaleSwitcher';
-import ThemeSwitcher from '@/components/common/ThemeSwitcher';
+import LocaleSwitcher from '@/components/layouts/LocaleSwitcher';
+import ThemeSwitcher from '@/components/layouts/ThemeSwitcher';
 // import { LogOutButton } from '@/components/common/LogOutButton';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 

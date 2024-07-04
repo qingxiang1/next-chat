@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
-import { DemoBadge } from '@/components/common/DemoBadge';
-import { ThemeProvider } from '@/components/common/ThemeProvider';
+import { DemoBadge } from '@/components/layouts/DemoBadge';
+import { ThemeProvider } from '@/components/layouts/ThemeProvider';
 import { AppConfig } from '@/utils/AppConfig';
 
 export const metadata: Metadata = {
