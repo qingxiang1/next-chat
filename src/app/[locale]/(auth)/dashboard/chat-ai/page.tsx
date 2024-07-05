@@ -35,6 +35,7 @@ const Dashboard = () => {
       <div className="flex-auto ml-1 border border-gray-200 flex flex-col">
         <div className='h-[500px] p-1 border-b-2 border-gray-200'>
           message window
+          {JSON.stringify(selected)}
         </div>
         <div className='flex-auto p-2'>
           <ChatInputTools />
