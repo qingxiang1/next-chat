@@ -1,5 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
+import Dashboard from '@/components/pages/dashboard/Dashboard';
+
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
@@ -15,14 +17,14 @@ export async function generateMetadata(props: { params: { locale: string } }) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function Index(props: { params: { locale: string; }; }) {
 
-  const t = await getTranslations({
-    locale: props.params.locale,
-    namespace: 'Index',
-  });
+  // const t = await getTranslations({
+  //   locale: props.params.locale,
+  //   namespace: 'Index',
+  // });
 
   return (
     <>
-      {t('chat_bots')}
+      <Dashboard />
     </>
   );
 }

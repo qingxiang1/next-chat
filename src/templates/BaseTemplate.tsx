@@ -12,17 +12,13 @@ const BaseTemplate = (props: {
       <div className="w-full">
         <header className="border-b border-gray-300 pb-2">
           <div className="flex justify-between items-center">
-            <nav>
-              <ul className="flex flex-wrap gap-x-5 text-xl">
-                {props.leftNav}
-              </ul>
-            </nav>
+            <div className="flex flex-wrap gap-x-5 text-xl">
+              {props.leftNav}
+            </div>
 
-            <nav>
-              <ul className="flex flex-wrap gap-x-5 text-xl">
-                {props.rightNav}
-              </ul>
-            </nav>
+            <div className="flex flex-wrap text-xl">
+              {props.rightNav}
+            </div>
           </div>
         </header>
 

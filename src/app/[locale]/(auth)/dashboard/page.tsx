@@ -1,5 +1,7 @@
 'use client'
 
+import DashboardComp from '@/components/pages/dashboard/Dashboard';
+
 // import dynamic from 'next/dynamic';
 // import { getTranslations } from 'next-intl/server';
 
@@ -10,10 +12,9 @@ const Dashboard = () => {
   // const NoSSRComp = dynamic(() => import('@/components/common/ThemeProvider'), {ssr: false});
 
   return (
-    <div className="[&_p]:my-6">
-      {/* <InitSystem /> */}
-      hahah
-    </div>
+    <>
+      <DashboardComp />
+    </>
   );
 };
 

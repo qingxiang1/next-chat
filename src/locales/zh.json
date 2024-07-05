@@ -59,6 +59,7 @@
     "dashboard_link": "工作台",
     "user_profile_link": "账户设置",
     "sign_out": "退出登录",
-    "about_link": "CHAT AI"
+    "about_link": "CHAT AI",
+    "hello_message": "你好 {email}!"
   }
 }

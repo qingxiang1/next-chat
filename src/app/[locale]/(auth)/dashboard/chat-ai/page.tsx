@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: { locale: string } }) {
 const Dashboard = () => {
 
   return (
-    <div className="[&_p]:my-6">
+    <div>
       哈哈哈
     </div>
   );

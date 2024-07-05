@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import LocaleSwitcher from '@/components/layouts/LocaleSwitcher';
-import ThemeSwitcher from '@/components/layouts/ThemeSwitcher'
+// import ThemeSwitcher from '@/components/layouts/ThemeSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
 import {
@@ -11,7 +11,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 
 export default function Layout(props: { children: React.ReactNode }) {
   const t = useTranslations('RootLayout');
@@ -46,7 +46,7 @@ export default function Layout(props: { children: React.ReactNode }) {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>  
-                <ThemeSwitcher />
+                {/* <ThemeSwitcher /> */}
               </NavigationMenuItem>
 
               <NavigationMenuItem>  

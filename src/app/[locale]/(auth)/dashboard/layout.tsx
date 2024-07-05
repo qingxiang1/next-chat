@@ -1,16 +1,9 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { auth } from '@clerk/nextjs/server';
-import { 
-  OrganizationSwitcher,
-  // SignedIn,
-  UserButton,
-} from "@clerk/nextjs";
 
-import LocaleSwitcher from '@/components/layouts/LocaleSwitcher';
-import ThemeSwitcher from '@/components/layouts/ThemeSwitcher';
-// import { LogOutButton } from '@/components/common/LogOutButton';
 import { BaseTemplate } from '@/templates/BaseTemplate';
+import HeaderNavRight from '@/components/layouts/HeaderNavRight';
 
 import {
   NavigationMenu,
@@ -59,25 +52,7 @@ export default function DashboardLayout(props: { children: React.ReactNode }) {
       }
       rightNav={
         <>
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>  
-                <OrganizationSwitcher />
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <ThemeSwitcher />
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>  
-                <LocaleSwitcher />
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>  
-                <UserButton />
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <HeaderNavRight />
         </>
       }
     >
