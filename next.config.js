@@ -40,5 +40,8 @@ export default withSentryConfig(
     // tunnelRoute: '/monitoring',
     // Vercel cron 作业的自动检测目前仅适用于 Pages Router。App Router 路由处理程序尚不受支持。
     // automaticVercelMonitors: true,
+
+    // 禁用 Sentry SDK 调试记录器以节省包大小
+    disableLogger: true,
   },
 );

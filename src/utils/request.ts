@@ -5,13 +5,21 @@ import { tansParams } from "@/utils/utils";
 // 是否显示重新登录
 export const isRelogin = { show: false };
 
+export interface ApiResponse {
+  code: number,
+  msg?: string,
+  data?: any,
+  success?: boolean,
+  failed?: boolean,
+}
+
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 // 创建axios实例
 const service = axios.create({
   // axios中请求配置有baseURL选项，表示请求URL公共部分
   baseURL: process.env.API_HOST,
   // 超时
-  timeout: 30000
+  timeout: 300000
 })
 
 // request拦截器
@@ -47,20 +55,20 @@ service.interceptors.response.use(res => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return res.data;
   }
-  if (code === '401') {
+  if (code == '401') {
     if (!isRelogin.show) {
       isRelogin.show = true;
     }
     return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
-  } else if (code === '500') {
+  } else if (code == '500') {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return Promise.reject(new Error(msg))
-  } else if (code === '601') {
+  } else if (code == '601') {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return Promise.reject(new Error(msg))
-  } else if (code !== '200') {
+  } else if (code != '200') {
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return Promise.reject(new Error(msg))

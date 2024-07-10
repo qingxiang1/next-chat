@@ -18,8 +18,7 @@ interface PropsTypes {
 
 const ChatInputTools = ({ onSend }: PropsTypes) => {
 
-
-  const [inputVal, setInputVal] = useState<string | null>('');
+  const [inputVal, setInputVal] = useState<string | undefined>('');
 
   const handleInputText = (e: any) => {
     const value: string = e?.target?.value ?? '';
@@ -30,6 +29,7 @@ const ChatInputTools = ({ onSend }: PropsTypes) => {
     if(!inputVal) return;
     if(onSend && typeof onSend === 'function') {
       onSend(inputVal);
+      setInputVal('');
     }
   };
 
@@ -39,7 +39,7 @@ const ChatInputTools = ({ onSend }: PropsTypes) => {
         <Button className='w-16 h-5 text-xs'>上传图片</Button>
         <Button className='w-16 h-5 text-xs ml-2'>上传文件</Button>
       </div>
-      <Textarea rows={5} cols={90} maxLength={300} onChange={handleInputText} />
+      <Textarea value={inputVal} rows={5} cols={90} maxLength={300} onChange={handleInputText} />
       <div className="text-right">
         <TooltipProvider>
           <Tooltip>
