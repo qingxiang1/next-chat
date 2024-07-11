@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
 import classNames from 'classnames';
@@ -7,12 +7,12 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/components/ui/avatar"
+} from "@/components/ui/avatar";
 
 import ChatHistory, { type ChatHisItem } from '@/components/pages/chatai/ChatHistory';
 import ChatInputTools from '@/components/pages/chatai/ChatInputTools';
 import { getUuid } from '@/utils/utils';
-import request, { type ApiResponse } from '@/utils/request'
+import request, { type ApiResponse } from '@/utils/request';
 
 
 interface msgType {
@@ -123,8 +123,9 @@ const msgList: Array<msgType> = [
 
 const Dashboard = () => {
 
-  const [selected, setSelected] = useState<ChatHisItem | null>(null);
+  // const [selected, setSelected] = useState<ChatHisItem | null>(null);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { user } = useUser();
 
@@ -144,7 +145,6 @@ const Dashboard = () => {
       setRefresh(false);
     }
   }, [refresh]);
-  
 
   const list = [
     {
@@ -160,7 +160,9 @@ const Dashboard = () => {
   ];
 
   const handleSelected = (item: ChatHisItem) => {
-    setSelected(item);
+    console.log('item :', item);
+
+    // setSelected(item);
   };
 
   const handleRefresh = () => {
@@ -175,6 +177,7 @@ const Dashboard = () => {
   };
 
   const handleSendMsg = async (msg: string) => {
+    setLoading(true);
     msgList.push({
       id: getUuid(),
       content: msg,
@@ -182,7 +185,7 @@ const Dashboard = () => {
       type: 'user',
     });
     handleRefresh();
-    
+
     try{
       const result = await request({
         url: '/api/chat',
@@ -192,8 +195,7 @@ const Dashboard = () => {
           sessionId: 'test-chat'
         },
       });
-
-      console.log(' response :', result);
+      setLoading(false);
 
       if((result as unknown as ApiResponse)?.success) {
         msgList.push({
@@ -205,13 +207,13 @@ const Dashboard = () => {
 
         handleRefresh();
       }
-      
+
     } catch(err) {
-      console.log('error :', err)
+      setLoading(false);
+      console.log('error :', err);
     }
 
   };
-  
 
   return (
     <div className="flex h-full rounded">
@@ -241,14 +243,18 @@ const Dashboard = () => {
                 after:absolute after:-right-[11px] after:top-[10px]
               `);
 
-              const nameClass = classNames(item.type === 'ai' ? 'text-left' : 'text-right', 'font-medium', 'px-3')
+              const nameClass = classNames(item.type === 'ai' ? 'text-left' : 'text-right', 'font-medium', 'px-3');
 
               return (
                 <div key={item.id} className={classes}>
                   <Avatar>
                     <AvatarImage
-                      src={item.type === 'ai' ? 'https://github.com/shadcn.png' : user?.imageUrl}
-                      alt="avatar" 
+                      src={
+                        item.type === 'ai' ?
+                        'https://raw.githubusercontent.com/qingxiang1/public-img/main/202407101043404.png' :
+                        user?.imageUrl
+                      }
+                      alt="avatar"
                     />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
@@ -264,7 +270,7 @@ const Dashboard = () => {
               );
             })
           }
-          <div></div>
+          {loading ? <div>loading...</div> : null}
         </div>
         <div className='flex-auto p-2'>
           <ChatInputTools onSend={handleSendMsg} />

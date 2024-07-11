@@ -1,4 +1,7 @@
-import { TextLoader } from "langchain/document_loaders/fs/text";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// import { TextLoader } from "langchain/document_loaders/fs/text";
+import { GithubRepoLoader } from "@langchain/community/document_loaders/web/github";
+// import ignore from "ignore";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { FaissStore } from "@langchain/community/vectorstores/faiss";
 import { AlibabaTongyiEmbeddings } from "@langchain/community/embeddings/alibaba_tongyi";
@@ -12,7 +15,20 @@ const run = async () => {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
   const baseDir = __dirname;
 
-  const loader = new TextLoader(path.join(baseDir, "../md/qiu.txt"));
+  // const loader = new TextLoader(path.join(baseDir, "../md/qiu.txt"));
+  const loader = new GithubRepoLoader(
+    "https://github.com/qingxiang1/blog-site-template",
+    {
+      branch: "main",
+      recursive: true,
+      unknown: "warn",
+      ignorePaths: [
+        "*.md", "yarn.lock", "*.json", '*.js', '*.ts', '*.tsx', '*.jsx', '*.html', '*.css', '*.yml', '*.png',
+        '*.svg', '*.jpg', '*.jpeg', '*.ico', '.bib', '.mjs'
+      ],
+      accessToken: ''
+    }
+  );
   const docs = await loader.load();
 
   const splitter = new RecursiveCharacterTextSplitter({
@@ -23,11 +39,13 @@ const run = async () => {
   const splitDocs = await splitter.splitDocuments(docs);
 
   const embeddings = new AlibabaTongyiEmbeddings({
-    apiKey: ''
+    apiKey: '',
+    // @ts-ignore
+    modelName: 'text-embedding-v1'
   });
   const vectorStore = await FaissStore.fromDocuments(splitDocs, embeddings);
 
-  await vectorStore.save(path.join(baseDir, "./db/article"));
+  await vectorStore.save(path.join(baseDir, "./db/github"));
 };
 
-// run();
+void run();

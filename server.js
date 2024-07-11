@@ -30,7 +30,7 @@ void app.prepare().then(() => {
     );
 
     // res.set("Content-Type", "text/plain");
-    let answer = ''
+    let answer = '';
     for await (const chunk of result) {
       answer += chunk;
       // res.write(chunk);

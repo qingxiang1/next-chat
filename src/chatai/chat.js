@@ -27,8 +27,11 @@ import { JSONChatHistory } from './JSONChatHistory/index.js';
  */
 async function loadVectorStore() {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const directory = path.join(__dirname, "./db/article");
-  const embeddings = new AlibabaTongyiEmbeddings();
+  const directory = path.join(__dirname, "./db/github");
+  const embeddings = new AlibabaTongyiEmbeddings({
+    // @ts-ignore
+    modelName: 'text-embedding-v1',
+  });
   const vectorStore = await FaissStore.load(directory, embeddings);
 
   return vectorStore;
@@ -47,7 +50,7 @@ async function getRephraseChain() {
   const rephraseChain = RunnableSequence.from([
     rephraseChainPrompt,
     new ChatAlibabaTongyi({
-      model: "qwen-turbo",
+      model: "qwen-turbo", // qwen1.5-0.5b-chat
       temperature: 0.4,
     }),
     new StringOutputParser(),
@@ -79,8 +82,8 @@ export async function getRagChain() {
   ]);
 
   const SYSTEM_TEMPLATE = `
-    你是一个熟读本站所有博客文章的终极原着党，精通根据博客文章原文详细解释和回答问题，你在回答时会引用作品原文。
-    并且回答时仅根据原文，尽可能回答用户问题，如果原文中没有相关内容，你可以回答“站内文章中没有相关内容”，
+    你是一个熟读原文的终极原着党，精通根据原文详细解释和回答问题，你在回答时会引用原文。
+    并且回答时仅根据原文信息，尽可能回答用户问题，如果原文中没有相关内容，你可以回答“站内文章中没有相关内容”，
 
     以下是原文中跟用户回答相关的内容：
     {context}
@@ -92,7 +95,7 @@ export async function getRagChain() {
   const prompt = ChatPromptTemplate.fromMessages([
     ["system", SYSTEM_TEMPLATE],
     new MessagesPlaceholder("history"),
-    ["human", "现在，你需要基于站内文章，回答以下问题：\n{standalone_question}`"],
+    ["human", "现在，你需要基于原文，回答以下问题：\n{standalone_question}`"],
   ]);
 
   const model = new ChatAlibabaTongyi({
@@ -136,7 +139,7 @@ export async function getRagChain() {
 // const ragChain = await getRagChain();
 // const result = await ragChain.stream(
 //   {
-//     question: '你是谁',
+//     question: '请基于原文回答，如何补办身份证',
 //   },
 //   { configurable: { sessionId: 'test-chat' } }
 // );
@@ -145,7 +148,6 @@ export async function getRagChain() {
 
 // for await (const chunk of result) {
 //   msg += chunk.toString();
-//   console.log('for :', chunk);
 // }
 
 // console.log('chat msg :', result, msg);
