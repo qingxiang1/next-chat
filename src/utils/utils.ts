@@ -1,8 +1,8 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 /**
@@ -31,7 +31,7 @@ export function getUuid(n = 1, eq = '') {
 * 参数处理
 */
 export function tansParams(params: Record<string, any>) {
-  let result = ''
+  let result = '';
   for (const propName of Object.keys(params)) {
     const value: Record<string, any> | string | null = params[propName];
     const part = encodeURIComponent(propName) + "=";
@@ -50,5 +50,5 @@ export function tansParams(params: Record<string, any>) {
       }
     }
   }
-  return result
+  return result;
 }

@@ -9,6 +9,7 @@ export const AddUserValidation = z.object({
   }).max(16, {
     message: "Password must be at most 16 characters.",
   }),
+  user_id: z.string(),
 });
 
 export const EditUserValidation = z.object({

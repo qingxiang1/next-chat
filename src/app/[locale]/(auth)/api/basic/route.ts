@@ -2,7 +2,7 @@
  * 路由处理程序
  */
 import { NextResponse, type NextRequest } from 'next/server';
-import { headers } from 'next/headers'
+import { headers } from 'next/headers';
 import { auth } from "@clerk/nextjs/server";
 
 import { db } from '@/libs/DB';
@@ -31,11 +31,12 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json(parse.error.format(), { status: 422 });
   }
 
-  const { username, password } = parse.data;
+  const { username, password, user_id } = parse.data;
 
   try {
     const user = await db.user.create({
       data: {
+        user_id,
         username,
         password,
         ip,
