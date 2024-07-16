@@ -2,7 +2,7 @@
  * 路由处理程序
  */
 import { NextResponse, type NextRequest } from 'next/server';
-import { headers } from 'next/headers'
+import { headers } from 'next/headers';
 import { auth } from "@clerk/nextjs/server";
 
 import { db } from '@/libs/DB';

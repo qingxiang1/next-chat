@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import { Send } from "lucide-react";
@@ -53,7 +53,6 @@ const ChatInputTools = ({ onSend }: PropsTypes) => {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        
       </div>
     </div>
   );

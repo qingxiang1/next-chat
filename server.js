@@ -48,8 +48,8 @@ void app.prepare().then(() => {
   });
 
   // @ts-ignore
-  server.listen(3000, (err) => {
+  server.listen(process.env.PORT || 3000, (err) => {
     if (err) throw err;
-    console.log('Server running on http://localhost:3000');
+    console.log(`Server running on ${process.env.PORT || 3000}`);
   });
 });
